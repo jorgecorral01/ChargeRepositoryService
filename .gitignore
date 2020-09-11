@@ -1,0 +1,16 @@
+Charge.Repository.Service.Business/bin/
+Charge.Repository.Service.Business/obj/
+Charge.Repository.Service.Repository.Entity/bin/
+Charge.Repository.Service.Repository.Entity/obj/
+Charge.Repository.Service.Repository/bin/
+Charge.Repository.Service.Repository/obj/
+Charge.Repository.Service/.vs/
+Charge.Repository.Service/bin/
+Charge.Repository.Service/obj/
+Test/Charge.Repository.Service.Repository.Test/bin/
+Test/Charge.Repository.Service.Repository.Test/obj/
+Test/Charge.Repository.Service.Test/bin/
+Test/Charge.Repository.Service.Test/obj/
+ChargeRepositoryService/Charge.Repository.Service/obj/
+ChargeRepositoryService/Charge.Repository.Service/bin/
+.vs/
