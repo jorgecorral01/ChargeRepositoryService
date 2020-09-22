@@ -18,18 +18,30 @@ namespace Charge.Repository.Service.Controller.Test {
     public class ControllerChargeAddShould {
         [Test]
         public async Task given_data_for_add_new_charge_we_obtein_an_ok_response() {
-            var newCharge = new RepositoryCharge { Description = "Nuevo cobro", Amount = 1000, identifier = "anyIdentifier" };
+            RepositoryCharge newCharge = GivenARepositoryCharge();
             HttpClient client = TestFixture.HttpClient;
             var requestUri = "http://localhost:10001/api/charges/Add";
             var content = GivenAHttpContent(newCharge, requestUri);
-            ChargeRepositoryEntity chargeRepositoryEntity = Substitute.For<ChargeRepositoryEntity>(new object[] { null });
-            chargeRepositoryEntity.Add(Arg.Is<RepositoryCharge>(item => item.Description == newCharge.Description && item.Amount == newCharge.Amount && item.identifier == newCharge.identifier)).Returns(true);
+            ChargeRepositoryEntity chargeRepositoryEntity = GivenArepositoryMock();
+            ReturnTrueForRepositoryMock(newCharge, chargeRepositoryEntity);
             RepositoriesFactoryMock.CreateAddRepository(chargeRepositoryEntity);
 
             var result = await client.PostAsync(requestUri, content);
 
             result.StatusCode.Should().Be(HttpStatusCode.OK);
             await chargeRepositoryEntity.Received(1).Add(Arg.Is<RepositoryCharge>(item => item.Description == newCharge.Description && item.Amount == newCharge.Amount && item.identifier == newCharge.identifier));
+        }
+
+        private void ReturnTrueForRepositoryMock(RepositoryCharge newCharge, ChargeRepositoryEntity chargeRepositoryEntity) {
+            chargeRepositoryEntity.Add(Arg.Is<RepositoryCharge>(item => item.Description == newCharge.Description && item.Amount == newCharge.Amount && item.identifier == newCharge.identifier)).Returns(true);
+        }
+
+        private static ChargeRepositoryEntity GivenArepositoryMock() {
+            return Substitute.For<ChargeRepositoryEntity>(new object[] { null });
+        }
+
+        private static RepositoryCharge GivenARepositoryCharge() {
+            return new RepositoryCharge { Description = "Nuevo cobro", Amount = 1000, identifier = "anyIdentifier" };
         }
 
         private static HttpContent GivenAHttpContent(RepositoryCharge repositoryCharge, string requestUri) {
