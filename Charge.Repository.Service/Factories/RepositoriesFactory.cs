@@ -4,8 +4,16 @@ using System;
 
 namespace Charge.Repository.Service.Factories {
     public class RepositoriesFactory {
-        public IChargeRepository GetRespository() {
-            return new ChargeRepositoryEntity(new ChargesContext());
+        private ChargeRepositoryEntity chargeRepositoryEntity;
+
+        public RepositoriesFactory() { }
+
+        public RepositoriesFactory (ChargeRepositoryEntity chargeRepositoryEntity) {
+            this.chargeRepositoryEntity = chargeRepositoryEntity;        
+        }
+
+        public virtual IChargeRepository GetRespository() {
+            return chargeRepositoryEntity;
         }
     }
 }

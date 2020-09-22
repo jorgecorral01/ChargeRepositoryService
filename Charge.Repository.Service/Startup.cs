@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Charge.Repository.Service.Controllers;
 using Charge.Repository.Service.Factories;
+using Charge.Repository.Service.Repository;
 using Charge.Repository.Service.Repository.Entity.Models;
 using Charge.Repository.Service.swagger;
 using Microsoft.AspNetCore.Builder;
@@ -34,7 +35,7 @@ namespace Charge.Repository.Service {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<ChargesContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SqlFormacion")));
-            services.AddSingleton(new RepositoriesFactory());            
+            services.AddSingleton(new RepositoriesFactory(new ChargeRepositoryEntity(new ChargesContext())));            
             ConfigureSwagger(services);
         }
 

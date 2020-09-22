@@ -12,7 +12,7 @@ namespace Charge.Repository.Service.Repository {
         }
 
         //Task<bool> Add(RepositoryCharge newCharge) 
-        public async Task<bool> Add(RepositoryCharge newCharge) {
+        public virtual  async Task<bool> Add(RepositoryCharge newCharge) {
             await Task.Delay(1);
             Charges entity = new Charges 
                     {

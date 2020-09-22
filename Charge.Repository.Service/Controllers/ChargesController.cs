@@ -23,13 +23,14 @@ namespace Charge.Repository.Service.Controllers {
             options.Conventions.Controller<ChargesController>().HasApiVersions(ApiVersioning.Versions());
         }
         // POST 
-        [Route("add")]
+        [Route("Add")]
         [HttpPost]
-        public ActionResult Add(RepositoryCharge charge) {
-            repositoriesFactory
+        public async Task<ActionResult> Add(RepositoryCharge charge) {
+            bool result = await  repositoriesFactory
                 .GetRespository()
                 .Add(charge);
-            return Ok();
+            if(result) { return Ok(); }
+            throw new Exception("FOR TODO");
         }
     }
 }
