@@ -22,8 +22,7 @@ namespace Charge.Repository.Service.Repository.Entity.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Persist Security Info=False;Integrated Security=false;database=Charges;server=.\\Formacion;User ID=Formacion;pwd=Pruebas2019..");
+                optionsBuilder.UseSqlServer("Persist Security Info=False;Integrated Security=false;database=Charges;server=192.168.215.241\\Formacion;User ID=Formacion;pwd=Pruebas2019...");
             }
         }
 
